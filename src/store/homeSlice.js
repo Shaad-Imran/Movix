@@ -1,9 +1,22 @@
-import React from 'react'
+import { createSlice } from "@reduxjs/toolkit";
 
-const homeSlice = () => {
-  return (
-    <div>homeSlice</div>
-  )
-}
+export const homeSlice = createSlice({
+  name: "home",
+  initialState: {
+    url: {},
+    genres: {},
+  },
+  reducers: {
+    getApiConfiguration: (state, action) => {
+      state.url = action.payload;
+    },
+    getGenres: (state, action) => {
+      state.genres = action.payload;
+    },
+  },
+});
 
-export default homeSlice
+// Action creators are generated for each case reducer function
+export const { getApiConfiguration, getGenres } = homeSlice.actions;
+
+export default homeSlice.reducer;
