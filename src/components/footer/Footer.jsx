@@ -1,12 +1,13 @@
 import React from "react";
+// import { footerData } from "./footerData";
+import ContentWrapper from "../contentWrapper/ContentWrapper";
+import "./style.scss";
 import {
   FaFacebookF,
   FaInstagram,
   FaTwitter,
   FaLinkedin,
 } from "react-icons/fa";
-import ContentWrapper from "../contentWrapper/ContentWrapper";
-import "./style.scss";
 
 const footerData = [
   {
