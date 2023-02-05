@@ -13,6 +13,7 @@ import Details from "./pages/details/Details";
 import SearchResult from "./pages/searchResult/SearchResult";
 import Explore from "./pages/explore/Explore";
 import PageNotFound from "./pages/404/PageNotFound";
+import { BsCheckLg } from "react-icons/bs";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,26 @@ const App = () => {
 
   useEffect(() => {
     fetchApiConfig();
+    genresCall();
   }, []);
+
+  const genresCall = async () => {
+    let promises = [];
+    let endPoints = ["tv", "movie"];
+    let allGenres = {};
+
+    endPoints.forEach((url) => {
+      promises.push(fetchDataFromApi(`/genre/${url}/list`));
+    });
+
+    const data = await Promise.all(promises);
+    console.log(data);
+    data.map(({ genres }) => {
+      return genres.map((item) => (allGenres[item.id] = item));
+    });
+
+    dispatch(getGenres(allGenres));
+  };
 
   return (
     <BrowserRouter>
